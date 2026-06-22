@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Chrome for Android theme configuration -->
+    <meta name="theme-color" content="#0d9488">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Nusrat Khwaja | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f0fdfa; 
+            --card-bg: #ffffff;
+            --text-main: #0f172a; 
+            --text-muted: #334155;
+            --primary: #0d9488; 
+            --accent: #2563eb; 
+            --gradient: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+            --border: #ccfbf1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            /* Eliminates tap delays and blue highlight flashes in mobile Chrome */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.4;
+            padding: 0.5rem;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Navigation bar with Chrome-optimized styling */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 0.25rem 0.5rem;
+        }
+
+        /* Explicit active state selector for tactile feedback on Android touchscreens */
+        .nav-link:active {
+            color: #2dd4bf;
+        }
+
+        /* Perfectly sized single page block layout for small viewports */
+        .container {
+            max-width: 480px;
+            margin: 3.2rem auto 0.5rem auto;
+            width: 100%;
+        }
+
+        /* Header block optimized for top-of-screen presentation */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.2rem;
+        }
+
+        header p {
+            color: #ccfbf1;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Ultra-tight containment paddings to minimize scrolling */
+        section {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 3.5rem; /* Offsets top nav height precisely on jump links */
+        }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            margin-left: 0.5rem;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .skill-item {
+            background: #f0fdfa;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--primary);
+            font-weight: 500;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            padding: 0.85rem;
+            border-radius: 8px;
+            background: linear-gradient(to right, #ffffff, #f0fdfa);
+            border-left: 4px solid var(--accent);
+        }
+
+        .meta-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            background-color: #dbeafe;
+            color: var(--accent);
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* 2-Column Touch Targets layout built to pass Google Lighthouse Accessibility requirements */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 0.5rem; /* Enlarged touch surface area */
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Instant dynamic visual state change on mobile screen tap */
+        .contact-link:active {
+            background-color: #eff6ff;
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(0.98);
+        }
+
+        .contact-static {
+            background-color: #f8fafc;
+            grid-column: span 2;
+            pointer-events: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-color: #e2e8f0;
+        }
+
+        .icon {
+            margin-right: 0.4rem;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        /* Chrome mobile viewport text clipping safeguards */
+        @media (max-width: 360px) {
+            header h1 { font-size: 1.4rem; }
+            h2 { font-size: 1rem; }
+            .contact-link { font-size: 0.8rem; padding: 0.65rem 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        
+        <header>
+            <h1>Nusrat Khwaja</h1>
+            <p>IT Infrastructure Specialist</p>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p class="about-text">IT professional with 40 years of experience across all technology sectors. Highly proactive and dedicated to continuous learning and technical mastery.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Core Skills</h2>
+            <div class="skill-list">
+                <div class="skill-item">IBM Mainframe programming, systems design, and systems programming.</div>
+                <div class="skill-item">Network design/implementation on Mainframes, Cisco routers, switches, and firewalls.</div>
+                <div class="skill-item">Project Management: hardware/software upgrades, disaster recovery.</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Key Projects</h2>
+            <div class="project-card">
+                <span class="meta-tag">Infrastructure Operations</span>
+                <div class="project-title">Server Decommissioning & Asset Lifecycle</div>
+                <div class="project-desc">Managed batch-based handover of enterprise hardware infrastructure to third-party providers.</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact & Links</h2>
+            <div class="contact-grid">
+                <a href="mailto:nusrat_khwaja@hotmail.com" class="contact-link">
+                    <span class="icon">✉️</span> Email
+                </a>
+                <a href="https://wa.me" class="contact-link" target="_blank">
+                    <span class="icon">💬</span> WhatsApp
+                </a>
+                <a href="https://linkedin.com" class="contact-link" target="_blank">
+                    <span class="icon">🔗</span> LinkedIn
+                </a>
+                <div class="contact-link contact-static">
+                    <span class="icon">📍</span> Toronto, Canada
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
